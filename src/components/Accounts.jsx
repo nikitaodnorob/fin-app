@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { formatSum } from '../helpers/formatters';
 
+const icon = require('../../assets/icons/sberbank.png')
+
 export const Accounts = ({ sum, account, logo }) => (
     <View style={styles.container}>
         <View style={styles.moneyBoxIcon}>

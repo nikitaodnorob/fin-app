@@ -5,14 +5,48 @@ import { ProtectiveMoneyBoxSum } from '../components/ProtectiveMoneyBoxSum';
 import { Accounts } from '../components/Accounts';
 import { CreateAccountBtn } from '../components/CreateAccountBtn';
 
+const accounts = [
+    {
+        id: 0,
+        account: "Альфа-Банк *2356",
+        currentSum: 12341,
+        logo: require('../../assets/icons/alfabank.png'),
+    },
+    {
+        id: 1,
+        account: "Сбербанк *2345",
+        currentSum: 1293,
+        logo: require('../../assets/icons/sberbank.png'),
+    },
+    {
+        id: 2,
+        account: "Альфа-Банк *4563",
+        currentSum: 234,
+        logo: require('../../assets/icons/alfabank.png'),
+    },
+    {
+        id: 3,
+        account: "Альфа-Банк *2395",
+        currentSum: 7864,
+        logo: require('../../assets/icons/alfabank.png'),
+    },
+    {
+        id: 4,
+        account: "Сбербанк *8234",
+        currentSum: 2341,
+        logo: require('../../assets/icons/sberbank.png'),
+    },
+]
+
 export const MainScreen = () => {
     return (
         <View style={styles.container}>
             <MonthCostsSum costsSum={10000} />
             <ProtectiveMoneyBoxSum sum={12431} />
             <Text style={styles.sectionHeader}>Счета</Text>
-            <Accounts account={"Альфа-Банк *3642"} sum={456} logo={require('../../assets/icons/alfabank.png')}/>
-            <Accounts account={"Сбербанк *2345"} sum={1293} logo={require('../../assets/icons/sberbank.png')}/>
+            {accounts.map(({account, currentSum, logo}) => {
+                return <Accounts account={account} sum={currentSum} logo={logo}/>
+            })}
             <CreateAccountBtn/>
         </View>
     );
