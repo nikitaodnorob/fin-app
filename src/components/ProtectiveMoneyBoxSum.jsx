@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
         paddingTop: 12,
         paddingBottom: 12,
         marginBottom: 32,
+        borderRadius: 8,
     },
     moneyBoxIcon: {
         width: 32,
@@ -36,13 +37,14 @@ const styles = StyleSheet.create({
     },
     moneyBoxTitle: {
         fontFamily: 'Rubik-Regular',
-        fontSize: 12,
+        fontSize: 14,
         lineHeight: 16,
         color: 'rgba(0, 0, 0, 0.54)',
+        marginBottom: 7,
     },
     moneyBoxSum: {
         fontFamily: 'Rubik-Bold',
-        fontSize: 14,
+        fontSize: 16,
         lineHeight: 16,
         color: 'rgba(0, 0, 0, 0.85)',
     },
