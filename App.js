@@ -28,7 +28,7 @@ export default function App() {
             {
                 areFontsLoaded &&
                 <Stack.Navigator initialRouteName="Главная">
-                    <Stack.Screen name="Главная" component={MainScreen}/>
+                    <Stack.Screen options={{headerShown: false}} name="Главная" component={MainScreen}/>
                     <Stack.Screen name="Защитная копилка" component={() => <Text>History</Text>}/>
                 </Stack.Navigator>
             }

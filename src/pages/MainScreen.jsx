@@ -41,6 +41,7 @@ const accounts = [
 export const MainScreen = () => {
     return (
         <View style={styles.container}>
+            <Text style={styles.titleHeader}>Главная</Text>
             <MonthCostsSum costsSum={10000} />
             <ProtectiveMoneyBoxSum sum={12431} />
             <Text style={styles.sectionHeader}>Счета</Text>
@@ -67,4 +68,12 @@ const styles = StyleSheet.create({
         lineHeight: 32,
         color: 'rgba(0, 0, 0, 0.85)',
     },
+    titleHeader: {
+        fontFamily: 'Rubik-Bold',
+        marginTop: 52,
+        marginBottom: 24,
+        fontSize: 32,
+        lineHeight: 32,
+        color: 'rgba(0, 0, 0, 0.85)',
+    }
 });
