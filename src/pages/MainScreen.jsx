@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { MonthCostsSum } from '../components/MonthCostsSum';
 import { ProtectiveMoneyBoxSum } from '../components/ProtectiveMoneyBoxSum';
 import { Accounts } from '../components/Accounts';
@@ -42,13 +42,15 @@ export const MainScreen = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.titleHeader}>Главная</Text>
-            <MonthCostsSum costsSum={10000} />
-            <ProtectiveMoneyBoxSum sum={12431} />
-            <Text style={styles.sectionHeader}>Счета</Text>
-            {accounts.map(({account, currentSum, logo}) => {
-                return <Accounts account={account} sum={currentSum} logo={logo}/>
-            })}
-            <CreateAccountBtn/>
+            <ScrollView contentContainerStyle={styles.scroll}>
+                <MonthCostsSum costsSum={10000} />
+                <ProtectiveMoneyBoxSum sum={12431} />
+                <Text style={styles.sectionHeader}>Счета</Text>
+                {accounts.map(({account, currentSum, logo}) => {
+                    return <Accounts account={account} sum={currentSum} logo={logo}/>
+                })}
+                <CreateAccountBtn />
+            </ScrollView>
         </View>
     );
 };
@@ -60,6 +62,9 @@ const styles = StyleSheet.create({
         paddingTop: 24,
         paddingLeft: 16,
         paddingRight: 16,
+    },
+    scroll: {
+
     },
     sectionHeader: {
         fontFamily: 'Rubik-Bold',

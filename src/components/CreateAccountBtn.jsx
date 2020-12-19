@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
         height: 56,
         backgroundColor: '#7957D8',
         borderRadius: 8,
+        marginBottom: 24,
     },
     textBtn: {
         padding: 12,
