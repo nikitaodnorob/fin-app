@@ -28,14 +28,10 @@ export default function App() {
             {
                 areFontsLoaded &&
                 <Stack.Navigator initialRouteName="Главная">
-                    <Stack.Screen options={{headerShown: false}} name="Главная" component={MainScreen}/>
-                    <Stack.Screen name="Защитная копилка" component={() => <Text>History</Text>}/>
+                    <Stack.Screen options={{headerShown: false}} name="Main" component={MainScreen}/>
+                    <Stack.Screen options={{headerShown: false}} name="MoneyBox" component={PaymentHistoryScreen}/>
                 </Stack.Navigator>
             }
         </NavigationContainer>
-        // <View style={styles.container}>
-        //   <Text>Open up App.js to start working on your app!</Text>
-        //   <StatusBar style="auto" />
-        // </View>
     );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { MonthCostsSum } from '../components/MonthCostsSum';
 import { ProtectiveMoneyBoxSum } from '../components/ProtectiveMoneyBoxSum';
 import { Accounts } from '../components/Accounts';
@@ -38,16 +38,18 @@ const accounts = [
     },
 ]
 
-export const MainScreen = () => {
+export const MainScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.titleHeader}>Главная</Text>
-            <ScrollView contentContainerStyle={styles.scroll}>
+            <ScrollView>
                 <MonthCostsSum costsSum={10000} />
-                <ProtectiveMoneyBoxSum sum={12431} />
+                <TouchableOpacity onPress={() => navigation.navigate('MoneyBox')}>
+                    <ProtectiveMoneyBoxSum sum={12431} />
+                </TouchableOpacity>
                 <Text style={styles.sectionHeader}>Счета</Text>
-                {accounts.map(({account, currentSum, logo}) => {
-                    return <Accounts account={account} sum={currentSum} logo={logo}/>
+                {accounts.map(({account, currentSum, logo, id}) => {
+                    return <Accounts key={id} account={account} sum={currentSum} logo={logo}/>
                 })}
                 <CreateAccountBtn />
             </ScrollView>
@@ -62,9 +64,6 @@ const styles = StyleSheet.create({
         paddingTop: 24,
         paddingLeft: 16,
         paddingRight: 16,
-    },
-    scroll: {
-
     },
     sectionHeader: {
         fontFamily: 'Rubik-Bold',
