@@ -7,5 +7,6 @@ export const formatMonth = (monthIndex) => {
 }
 
 export const formatSum = (sum) => {
-    return sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
+    const roundedSum = Math.round(sum * 100) / 100;
+    return roundedSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
 }

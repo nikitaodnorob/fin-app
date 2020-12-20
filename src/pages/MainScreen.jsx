@@ -1,56 +1,50 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { MonthCostsSum } from '../components/MonthCostsSum';
 import { ProtectiveMoneyBoxSum } from '../components/ProtectiveMoneyBoxSum';
-import { Accounts } from '../components/Accounts';
+import { Account } from '../components/Accounts';
 import { CreateAccountBtn } from '../components/CreateAccountBtn';
-
-const accounts = [
-    {
-        id: 0,
-        account: "Альфа-Банк *2356",
-        currentSum: 12341,
-        logo: require('../../assets/icons/alfabank.png'),
-    },
-    {
-        id: 1,
-        account: "Сбербанк *2345",
-        currentSum: 1293,
-        logo: require('../../assets/icons/sberbank.png'),
-    },
-    {
-        id: 2,
-        account: "Альфа-Банк *4563",
-        currentSum: 234,
-        logo: require('../../assets/icons/alfabank.png'),
-    },
-    {
-        id: 3,
-        account: "Альфа-Банк *2395",
-        currentSum: 7864,
-        logo: require('../../assets/icons/alfabank.png'),
-    },
-    {
-        id: 4,
-        account: "Сбербанк *8234",
-        currentSum: 2341,
-        logo: require('../../assets/icons/sberbank.png'),
-    },
-]
+import { AppContext } from '../../App';
+import * as api from '../api'
 
 export const MainScreen = ({ navigation }) => {
+    const { state, dispatch } = useContext(AppContext);
+
+    const { userId, monthSpendingSum, loading, accounts } = state;
+
+    useEffect(() => {
+        if (userId) {
+            api.getUserInfo(userId, dispatch);
+            api.getMonthSpendingSum(userId, dispatch);
+            api.getUserAccounts(userId, dispatch)
+        }
+    }, [userId]);
+
+    let moneyBox = null;
+    if (accounts) {
+        moneyBox = accounts.find(account => account.accounttype === 'protected')
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.titleHeader}>Главная</Text>
             <ScrollView>
-                <MonthCostsSum costsSum={10000} />
-                <TouchableOpacity onPress={() => navigation.navigate('MoneyBox')}>
-                    <ProtectiveMoneyBoxSum sum={12431} />
-                </TouchableOpacity>
+                <MonthCostsSum costsSum={monthSpendingSum} loading={loading.monthSpendingSum} />
+                {
+                    !loading.accounts && moneyBox
+                        ? <TouchableOpacity onPress={() => navigation.navigate('MoneyBox')}>
+                            <ProtectiveMoneyBoxSum sum={moneyBox.balancerubamt} />
+                        </TouchableOpacity>
+                        : <Text style={styles.loadingText}>Загрузка...</Text>
+                }
                 <Text style={styles.sectionHeader}>Счета</Text>
-                {accounts.map(({account, currentSum, logo, id}) => {
-                    return <Accounts key={id} account={account} sum={currentSum} logo={logo}/>
-                })}
+                {
+                    !loading.accounts && accounts
+                        ? accounts.map(({account, balancerubamt, emitter, accountid}) => (
+                            <Account key={accountid} caption={account} sum={balancerubamt} emitter={emitter}/>
+                        ))
+                        : <Text style={styles.loadingText}>Загрузка...</Text>
+                }
                 <CreateAccountBtn />
             </ScrollView>
         </View>
@@ -79,5 +73,12 @@ const styles = StyleSheet.create({
         fontSize: 32,
         lineHeight: 32,
         color: 'rgba(0, 0, 0, 0.85)',
-    }
+    },
+    loadingText: {
+        fontFamily: 'Rubik-Regular',
+        fontSize: 16,
+        lineHeight: 16,
+        color: 'rgba(0, 0, 0, 0.85)',
+        textAlign: 'center',
+    },
 });

@@ -14,3 +14,6 @@ web-build/
 
 # IDE
 .idea/
+
+# env
+*.local
