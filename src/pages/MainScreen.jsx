@@ -7,7 +7,7 @@ import { CreateAccountBtn } from '../components/CreateAccountBtn';
 import { AppContext } from '../../App';
 import * as api from '../api'
 
-export const MainScreen = ({ navigation }) => {
+export function MainScreen({ navigation }) {
     const { state, dispatch } = useContext(AppContext);
 
     const { userId, monthSpendingSum, loading, accounts } = state;

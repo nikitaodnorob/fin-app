@@ -1,6 +1,10 @@
 import { API_KEY, API_HOST, AUTH_KEY } from '@env';
 import * as ActionType from '../actionTypes';
 
+// const API_KEY='novocaineikeepitcoming';
+// const API_HOST='https://crossplatformtest.herokuapp.com';
+// const AUTH_KEY='eec9a8a5718b37c1469f09386e614bdc';
+
 const headers = new Headers();
 headers.append('apikey', API_KEY);
 
