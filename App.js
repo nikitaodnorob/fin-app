@@ -3,6 +3,7 @@ import * as Font from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { MainScreen } from './src/pages/MainScreen';
+import { LimitsScreen } from './src/pages/LimitsScreen';
 import { PaymentHistoryScreen } from './src/pages/PaymentHistoryScreen';
 import { initialState, reducer } from './src/reducer';
 import * as api from './src/api';
@@ -41,6 +42,7 @@ export default function App() {
                     <Stack.Navigator initialRouteName="Главная">
                         <Stack.Screen options={{headerShown: false}} name="Main" component={MainScreen} />
                         <Stack.Screen options={{headerShown: false}} name="MoneyBox" component={PaymentHistoryScreen} />
+                        <Stack.Screen options={{headerShown: false}} name="Limits" component={LimitsScreen} />
                     </Stack.Navigator>
                 }
             </NavigationContainer>

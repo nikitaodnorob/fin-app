@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { MonthCostsSum } from '../components/MonthCostsSum';
 import { ProtectiveMoneyBoxSum } from '../components/ProtectiveMoneyBoxSum';
 import { Account } from '../components/Accounts';
@@ -28,7 +28,10 @@ export function MainScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <Text style={styles.titleHeader}>Главная</Text>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                    <Image source={require('../../assets/group.png')} style={styles.logo}/>
+                </View>
                 <MonthCostsSum costsSum={monthSpendingSum} loading={loading.monthSpendingSum} />
                 {
                     !loading.accounts && moneyBox
@@ -81,4 +84,10 @@ const styles = StyleSheet.create({
         color: 'rgba(0, 0, 0, 0.85)',
         textAlign: 'center',
     },
+    logo: {
+        height: 165,
+        width: 330,
+        alignItems: 'center',
+        justifyContent:'center',
+    }
 });

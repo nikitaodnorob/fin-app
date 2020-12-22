@@ -4,69 +4,62 @@ import {Image, StyleSheet, Text, View} from "react-native";
 const getLogo = (emitter) => {
     const icons = {
         save: require('../../assets/stock-market.png'),
-        return: require('../../assets/bx-refresh.png'),
+        refund: require('../../assets/bx-refresh.png'),
         debit: require('../../assets/bx-ruble.png'),
     };
     return icons[emitter];
 }
 
-const save = {
-    color: '#86C339'
+const getDescription = (emitter) => {
+    const description = {
+        save: 'Сохранение средств',
+        refund: 'Возврат средств',
+        debit: 'Списание средств',
+    };
+    return description[emitter];
 }
 
-const returnMoney = {
-    color: 'rgba(0, 0, 0, 0.54)'
+const getColorOperationType = (emitter) => {
+    const description = {
+        save: {color: '#86C339'},
+        refund: {color: 'rgba(0, 0, 0, 0.54)'},
+        debit: {color: '#FF5B5B'},
+    };
+    return description[emitter];
 }
 
-const debit = {
-    color: '#FF5B5B'
+const transformSumOperation = (emitter, sum) => {
+    const operation = {
+        save: '+',
+        refund: '-',
+        debit: '-',
+    };
+    return `${ operation[emitter] } ${sum} ₽`;
 }
 
-export const Operation = () => (
+export const Operation = ({ data, operations }) => (
     <View style={styles.content}>
-        <Text style={styles.data}>3 Декабря</Text>
-        <View style={styles.container}>
-            <View style={styles.moneyBoxIcon}>
-                <Image source={require('../../assets/stock-market.png')} />
+        <Text style={styles.data}>{data}</Text>
+        {operations.map(({type, name, sum}) => (
+            <View style={styles.container}>
+                <View style={styles.moneyBoxIcon}>
+                    <Image source={getLogo(type)}/>
+                </View>
+                <View style={{flex: 1}}>
+                    <Text style={styles.moneyBoxSum}>{name}</Text>
+                    <Text style={styles.moneyBoxTitle}>{getDescription(type)}</Text>
+                </View>
+                <View>
+                    <Text style={[styles.sumOperation, getColorOperationType(type)]}>{transformSumOperation(type, sum)}</Text>
+                </View>
             </View>
-            <View style={{flex: 1}}>
-                <Text style={styles.moneyBoxSum}>McDonald’s (MCC 2132)</Text>
-                <Text style={styles.moneyBoxTitle}>Сохранение средств</Text>
-            </View>
-            <View>
-                <Text style={[styles.sumOperation, save]}>+1234,34 P</Text>
-            </View>
-        </View>
-        <View style={styles.container}>
-            <View style={styles.moneyBoxIcon}>
-                <Image source={require('../../assets/bx-refresh.png')} />
-            </View>
-            <View style={{flex: 1}}>
-                <Text style={styles.moneyBoxSum}>McDonald’s (MCC 2132)</Text>
-                <Text style={styles.moneyBoxTitle}>Возврат средств</Text>
-            </View>
-            <View>
-                <Text style={[styles.sumOperation, returnMoney]}>- 1234,34 P</Text>
-            </View>
-        </View>
-        <View style={styles.container}>
-            <View style={styles.moneyBoxIcon}>
-                <Image source={require('../../assets/bx-ruble.png')} />
-            </View>
-            <View style={{flex: 1}}>
-                <Text style={styles.moneyBoxSum}>McDonald’s (MCC 2132)</Text>
-                <Text style={styles.moneyBoxTitle}>Списание средств</Text>
-            </View>
-            <View>
-                <Text style={[styles.sumOperation, debit]}>-1234,34 P</Text>
-            </View>
-        </View>
+        ))}
     </View>
 )
 
 const styles = StyleSheet.create({
     content: {
-        backgroundColor: '#ffffff',
+        backgroundColor: '#F8FBFF'
     },
     data: {
         fontFamily: 'Rubik-Bold',
