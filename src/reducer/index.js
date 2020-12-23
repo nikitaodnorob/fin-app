@@ -34,9 +34,11 @@ export const reducer = (state, action) => {
                 }
             };
         case ActionType.GotUserAccounts:
+            const moneyBox = action.payload.find(account => account.accounttype === 'protected');
             return {
                 ...state,
                 accounts: action.payload,
+                moneyBox,
             };
         case ActionType.SetAccountsLoading:
             return {
@@ -46,6 +48,21 @@ export const reducer = (state, action) => {
                     accounts: action.payload,
                 }
             };
+        case ActionType.GotTransactions:
+            return {
+                ...state,
+                transactions: action.payload,
+            }
+        case ActionType.SetTransactionsLoading:
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    transactions: action.payload,
+                }
+            };
+        default:
+            return state;
     }
 }
 
@@ -61,7 +78,10 @@ export const initialState = {
     loading: {
         monthSpendingSum: false,
         accounts: false,
+        transactions: false,
     },
     monthSpendingSum: null,
     accounts: null,
+    moneyBox: null,
+    transactions: null,
 }

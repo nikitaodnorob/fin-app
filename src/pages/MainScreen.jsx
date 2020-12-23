@@ -10,7 +10,7 @@ import * as api from '../api'
 export function MainScreen({ navigation }) {
     const { state, dispatch } = useContext(AppContext);
 
-    const { userId, monthSpendingSum, loading, accounts } = state;
+    const { userId, monthSpendingSum, loading, accounts, moneyBox } = state;
 
     useEffect(() => {
         if (userId) {
@@ -19,11 +19,6 @@ export function MainScreen({ navigation }) {
             api.getUserAccounts(userId, dispatch)
         }
     }, [userId]);
-
-    let moneyBox = null;
-    if (accounts) {
-        moneyBox = accounts.find(account => account.accounttype === 'protected')
-    }
 
     return (
         <View style={styles.container}>
@@ -52,7 +47,7 @@ export function MainScreen({ navigation }) {
             </ScrollView>
         </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: {

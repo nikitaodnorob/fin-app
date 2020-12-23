@@ -39,3 +39,12 @@ export const getUserAccounts = (userId, dispatch) => {
         .catch(error => console.error('error', error))
         .then(() => dispatch({ type: ActionType.SetAccountsLoading, payload: false }));
 }
+
+export const getTransactions = (userId, accountId, dispatch) => {
+    dispatch({ type: ActionType.SetTransactionsLoading, payload: true });
+    fetch(`${API_HOST}/account/transactions?authKey=${AUTH_KEY}&accountId=${accountId}`, { headers })
+        .then(response => response.json())
+        .then(result => dispatch({ type: ActionType.GotTransactions, payload: result.transactions }))
+        .catch(error => console.error('error', error))
+        .then(() => dispatch({ type: ActionType.SetTransactionsLoading, payload: false }));
+}

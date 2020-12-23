@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { formatSum } from '../helpers/formatters';
 import AlfaComponent from "../svgComponent/AlfaComponent";
 import SberComponent from "../svgComponent/SberComponent";

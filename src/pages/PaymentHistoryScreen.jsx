@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import {ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import {Operation} from "../components/Operation";
 import SettingComponent from "../svgComponent/SettingComponent";
+import {AppContext} from '../../App';
+import * as api from '../api';
 
 
 export const operationType = { refund: 'refund', debit: 'debit', save: 'save'};
@@ -101,6 +103,16 @@ const operationsPull = [
 ]
 
 export function PaymentHistoryScreen({ navigation }) {
+    const { state, dispatch } = useContext(AppContext);
+
+    const { userId, moneyBox, transactions, loading } = state;
+    console.warn('state ', state);
+    useEffect(() => {
+        if (!moneyBox || !userId) return;
+
+        api.getTransactions(userId, moneyBox.accountid, dispatch)
+    }, [moneyBox, userId]);
+
     return (
         <View style={styles.mainContainer}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -110,6 +122,12 @@ export function PaymentHistoryScreen({ navigation }) {
                 </TouchableOpacity>
             </View>
             <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+                {/* todo: transactions - массив транзакций */}
+                {/*{*/}
+                {/*    loading.transactions || !transactions*/}
+                {/*        ? <Text>Загрузка...</Text>*/}
+                {/*        : <Operation />*/}
+                {/*}*/}
                 { operationsPull && operationsPull.map((item) => (
                         <Operation data={item.data} operations={item.operations}/>))
                 }
