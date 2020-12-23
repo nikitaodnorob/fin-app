@@ -1,14 +1,9 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from "react-native";
-
-const getLogo = (emitter) => {
-    const icons = {
-        save: require('../../assets/stock-market.png'),
-        refund: require('../../assets/bx-refresh.png'),
-        debit: require('../../assets/bx-ruble.png'),
-    };
-    return icons[emitter];
-}
+import { StyleSheet, Text, View } from "react-native";
+import RefundComponent from "../svgComponent/RefundComponent";
+import SaveComponent from "../svgComponent/SaveComponent";
+import DebitComponent from "../svgComponent/DebitComponent";
+import {operationType} from "../pages/PaymentHistoryScreen";
 
 const getDescription = (emitter) => {
     const description = {
@@ -43,7 +38,9 @@ export const Operation = ({ data, operations }) => (
         {operations.map(({type, name, sum}) => (
             <View style={styles.container}>
                 <View style={styles.moneyBoxIcon}>
-                    <Image source={getLogo(type)}/>
+                    { type === operationType.refund && <RefundComponent/> }
+                    { type === operationType.save && <SaveComponent/> }
+                    { type === operationType.debit && <DebitComponent/> }
                 </View>
                 <View style={{flex: 1}}>
                     <Text style={styles.moneyBoxSum}>{name}</Text>

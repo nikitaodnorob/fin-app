@@ -1,8 +1,10 @@
 import React from 'react';
-import {ScrollView, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import {ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import {Operation} from "../components/Operation";
+import SettingComponent from "../svgComponent/SettingComponent";
 
-const operationType = { refund: 'refund', debit: 'debit', save: 'save'};
+
+export const operationType = { refund: 'refund', debit: 'debit', save: 'save'};
 
 const operationsPull = [
     {
@@ -104,7 +106,7 @@ export function PaymentHistoryScreen({ navigation }) {
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <Text style={styles.titleHeader}>Защитная копилка</Text>
                 <TouchableOpacity onPress={() => navigation.navigate('Limits')}>
-                    <Image source={require('../../assets/bx-cog.png')} style={{height: 32, width: 32, marginTop: 25}}/>
+                    <SettingComponent source={require('../../assets/bx-cog.png')} style={{height: 32, width: 32, marginTop: 25}}/>
                 </TouchableOpacity>
             </View>
             <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
