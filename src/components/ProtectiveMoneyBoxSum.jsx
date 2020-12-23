@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { formatSum } from '../helpers/formatters';
+import BlockComponent from "../svgComponent/MoneyBox";
 
 export const ProtectiveMoneyBoxSum = ({ sum }) => (
     <View style={styles.container}>
         <View style={styles.moneyBoxIcon}>
-            <Image source={require('../../assets/icons/moneyBox.png')} />
+            <BlockComponent/>
         </View>
         <View>
             <Text style={styles.moneyBoxTitle}>Защитная копилка</Text>

@@ -1,5 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import AddCategoriesComponent from "../svgComponent/AddCategoriesComponent";
+import {TransferFunds} from "../components/TransferFunds";
 
 export function LimitsScreen() {
     return (
@@ -7,7 +9,11 @@ export function LimitsScreen() {
             <Text style={styles.titleHeader}>Лимиты</Text>
             <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                 <Text style={styles.section}>Общие настройки</Text>
-                <Text style={styles.section}>Категории</Text>
+                <TransferFunds/>
+                <View style={{flexDirection: 'row'}}>
+                    <Text style={[styles.section, {flex: 1}]}>Категории</Text>
+                    <AddCategoriesComponent style={{marginTop: 25}}/>
+                </View>
             </ScrollView>
         </View>
     )
@@ -24,14 +30,13 @@ const styles = StyleSheet.create({
     titleHeader: {
         fontFamily: 'Rubik-Bold',
         marginTop: 52,
-        marginBottom: 24,
         fontSize: 32,
         lineHeight: 32,
         color: 'rgba(0, 0, 0, 0.85)',
     },
     section: {
         fontFamily: 'Rubik-Bold',
-        marginTop: 14,
+        marginTop: 30,
         marginBottom: 24,
         fontSize: 26,
         lineHeight: 32,

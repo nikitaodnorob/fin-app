@@ -106,7 +106,7 @@ export function PaymentHistoryScreen({ navigation }) {
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <Text style={styles.titleHeader}>Защитная копилка</Text>
                 <TouchableOpacity onPress={() => navigation.navigate('Limits')}>
-                    <SettingComponent source={require('../../assets/bx-cog.png')} style={{height: 32, width: 32, marginTop: 25}}/>
+                    <SettingComponent style={{height: 32, width: 32, marginTop: 22}}/>
                 </TouchableOpacity>
             </View>
             <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>

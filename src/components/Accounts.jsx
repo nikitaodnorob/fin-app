@@ -1,20 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { formatSum } from '../helpers/formatters';
+import AlfaComponent from "../svgComponent/AlfaComponent";
+import SberComponent from "../svgComponent/SberComponent";
+import TinkoffComponent from "../svgComponent/TinkoffComponent";
+import UnknownEmitterComponent from "../svgComponent/UnknownEmitterComponent";
 
-const getLogo = (emitter) => {
-    const icons = {
-        alfa: require('../../assets/icons/alfabank.png'),
-        sber: require('../../assets/icons/sberbank.png'),
-        unknown: require('../../assets/icons/creditCard.png'),
-    };
-    return icons[emitter];
-}
 
 export const Account = ({ sum, caption, emitter }) => (
     <View style={styles.container}>
         <View style={styles.moneyBoxIcon}>
-            {emitter && <Image source={getLogo(emitter)} />}
+            {emitter ===  'alfa' && <AlfaComponent />}
+            {emitter ===  'sber' && <SberComponent />}
+            {emitter ===  'tnkf' && <TinkoffComponent />}
+            {emitter ===  'unknown' && <UnknownEmitterComponent />}
         </View>
         <View>
             <Text style={styles.moneyBoxTitle}>{caption || 'Счет'}</Text>
