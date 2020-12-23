@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import AddCategoriesComponent from "../svgComponent/AddCategoriesComponent";
 import {TransferFunds} from "../components/TransferFunds";
+import {Categories} from "../components/Categories";
 
 export function LimitsScreen() {
     return (
@@ -14,6 +15,7 @@ export function LimitsScreen() {
                     <Text style={[styles.section, {flex: 1}]}>Категории</Text>
                     <AddCategoriesComponent style={{marginTop: 25}}/>
                 </View>
+                <Categories/>
             </ScrollView>
         </View>
     )
@@ -22,7 +24,7 @@ export function LimitsScreen() {
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
-        backgroundColor: '#F8FBFF',
+        backgroundColor: '#ffffff',
         paddingTop: 24,
         paddingLeft: 16,
         paddingRight: 16,

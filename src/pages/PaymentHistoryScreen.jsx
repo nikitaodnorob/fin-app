@@ -121,7 +121,7 @@ export function PaymentHistoryScreen({ navigation }) {
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
-        backgroundColor: '#F8FBFF',
+        backgroundColor: '#ffffff',
         paddingTop: 24,
         paddingLeft: 16,
         paddingRight: 16,

@@ -56,7 +56,7 @@ export const Operation = ({ data, operations }) => (
 
 const styles = StyleSheet.create({
     content: {
-        backgroundColor: '#F8FBFF'
+        backgroundColor: '#ffffff'
     },
     data: {
         fontFamily: 'Rubik-Bold',
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 8,
-        marginRight: 16,
+        marginRight: 20,
     },
     moneyBoxTitle: {
         fontFamily: 'Rubik-Regular',
